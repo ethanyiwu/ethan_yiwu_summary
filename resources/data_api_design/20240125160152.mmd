@@ -1,0 +1,27 @@
+
+classDiagram
+    class Main {
+        +FlaskApp flask_app
+        +run() void
+    }
+    class FlaskApp {
+        -Scraper scraper
+        -Summarizer summarizer
+        -Cache cache
+        +route_summary(url: str) str
+    }
+    class Scraper {
+        +get_content(url: str) str
+    }
+    class Summarizer {
+        +summarize_text(text: str, summary_length: int) str
+    }
+    class Cache {
+        -cache_storage dict
+        +get_cached_summary(url: str) str
+        +cache_summary(url: str, summary: str) void
+    }
+    Main --> FlaskApp
+    FlaskApp --> Scraper
+    FlaskApp --> Summarizer
+    FlaskApp --> Cache
